@@ -1,0 +1,10 @@
+#!/bin/bash
+#
+#
+# Il faut d'abords ecrire crontab -e
+# 0 4 * * 1 /bin/sh /root/init/script/01.sh > /var/log/update_script.log
+#
+#
+
+nohup sudo apt-get -y update >> /var/log/update_script.log
+nohup sudo apt-get -y upgrade >> /var/log/update_script.log

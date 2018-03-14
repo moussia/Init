@@ -1,0 +1,27 @@
+#!/bin/bash
+#
+# Crontab regles :
+# 0 0 * * * /bin/sh /root/init/script/04 /var
+# Tout les jours a minuit.
+#
+#
+
+nsa() {
+	echo "Crontab a ete change"| mail -s "Il a etait modifie" root@localhost.localdomain
+}
+
+watcher() {
+	c1=""
+
+		while [[ true ]]
+		do
+			c2=`md5sum /etc/crontab`
+			if [[ $c1 != $c2 ]] ; then
+				nsa
+				c1=$c2
+			fi
+			sleep 10
+		done
+}
+
+watcher
